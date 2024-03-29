@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express-generator": "^4.16.1"
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-generator": "^4.16.1",
+    "sha256": "^0.2.0"
   }
 }
