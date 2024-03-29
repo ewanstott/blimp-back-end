@@ -21,7 +21,6 @@ router.delete("/:id", (req, res) => {
     res.send({ status: 0, reason: "User not found, check the id" });
   }
 
-  //the magic can now happen
   users.splice(indexOf, 1);
   res.send({ status: 1 });
 });

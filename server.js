@@ -2,16 +2,19 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 app.use(cors());
+const practitionerInitialData = require("./localStorage.json");
 
 //users state
-const users = [];
+const patients = [];
+const practitioners = [...practitionerInitialData]; //starter data
+const messages = []; //add seperate routes
 let lastUserId = { value: 1000 };
 
 app.use(express.json());
 
 //middleware that adds the users array to the request
 app.use(function (req, res, next) {
-  req.users = users;
+  req.practitioners = practitioners;
   req.lastUserId = lastUserId;
   next();
 });

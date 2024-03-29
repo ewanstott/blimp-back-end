@@ -4,10 +4,16 @@ const sha256 = require("sha256");
 const { salt } = require("../secrets");
 const { getUser, getUserIndexOfById } = require("../utils");
 
+//Gets all practitioner
 router.get("/", (req, res) => {
-  res.send(req.users);
+  const practitioners = [...req.practitioners];
+  practitioners.forEach((practitioner) => {
+    delete practitioner.location;
+  });
+  res.send(req.practitioners);
 });
 
+//get 1 practitioner (update names)
 router.get("/:id", (req, res) => {
   let { id } = req.params;
   const { users } = req;
