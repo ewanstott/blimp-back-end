@@ -15,14 +15,16 @@ app.use(express.json());
 //middleware that adds the users array to the request
 app.use(function (req, res, next) {
   req.practitioners = practitioners;
-  req.lastUserId = lastUserId;
+  req.patients = patients;
+  req.req.lastUserId = lastUserId;
   next();
 });
 
-app.use("/user/get", require("./routes/get"));
-app.use("/user/add", require("./routes/add"));
-app.use("/user/delete", require("./routes/delete"));
-app.use("/user/update", require("./routes/update"));
+//Route Handlers:
+app.use("/user/get", require("./routes/practitioner/get"));
+app.use("/user/add", require("./routes/practitioner/add"));
+app.use("/user/delete", require("./routes/practitioner/delete"));
+app.use("/user/update", require("./routes/practitioner/update"));
 
 const PORT = process.env.PORT || 6001;
 app.listen(PORT, () => {

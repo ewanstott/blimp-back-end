@@ -1,0 +1,11 @@
+Patients Folder: Contains files related to patient operations.
+- add.js: Handles adding new patients.
+- delete.js: Handles deleting patients.
+- get.js: Handles getting individual patient data.
+- update.js: Handles updating patient data.
+
+Practitioners Folder: Contains files related to practitioner operations.
+- add.js: Handles adding new practitioners.
+- delete.js: Handles deleting practitioners.
+- get.js: Handles getting individual practitioner data.
+- update.js: Handles updating practitioner data.
