@@ -2,10 +2,7 @@ const express = require("express");
 const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
-const {
-  getPractitioner,
-  getPractitionerIndexOfById,
-} = require("../practitioner/utils");
+const { getPractitioner, getPractitionerIndexOfById } = require("./utils");
 
 // UPDATE route handles PATCH requests with a dynamic parameter :id.
 router.patch("/:id", (req, res) => {
@@ -43,7 +40,7 @@ router.patch("/:id", (req, res) => {
     practitioners[indexOf].password = sha256(password + salt);
   }
   //sends a response with status code 1 indicating a successful update.
-  res.send({ status: 1, reason: "Sucessfully updated details" });
+  res.send({ status: 1 });
 });
 
 // APPEND route handles PATCH requests with a dynamic parameter :id.

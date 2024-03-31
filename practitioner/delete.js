@@ -2,10 +2,7 @@ const express = require("express");
 const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
-const {
-  getPractitioner,
-  getPractitionerIndexOfById,
-} = require("../practitioner/utils");
+const { getPractitioner, getPractitionerIndexOfById } = require("./utils");
 
 router.delete("/:id", (req, res) => {
   let { id } = req.params;
@@ -20,7 +17,7 @@ router.delete("/:id", (req, res) => {
   }
 
   // find the index of the practitioner in the practitioners array based on their ID.
-  const indexOf = getPractitionerIndexOfById(practitioners, id);
+  const indexOf = getPractitionerIndexOfById(users, id);
 
   //Checks if the index is -1, indicating that the practitioner with the provided ID was not found.
   if (indexOf === -1) {
@@ -28,9 +25,9 @@ router.delete("/:id", (req, res) => {
   }
 
   // Uses splice to remove the practitioner from the practitioners array using the found index.
-  practitioners.splice(indexOf, 1);
+  users.splice(indexOf, 1);
   //Send a response with status code 1 to indicate successful deletion of the practitioner.
-  res.send({ status: 1, reason: "Sucessfully deleted account" });
+  res.send({ status: 1 });
 });
 
 module.exports = router;
