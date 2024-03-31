@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
-const { getPractitioner, getPractitionerIndexOfById } = require("../utils");
+const {
+  getPractitioner,
+  getPractitionerIndexOfById,
+} = require("../practitioner/utils");
 
 //store all practitioner signup data
 
@@ -22,16 +25,30 @@ router.post("/", (req, res) => {
   const practitioner = getPractitioner(practitioners, email, password);
 
   //checks for duplicate account
-  if (user) {
+  if (practitioner) {
     res.send({ status: 0, reason: "Duplicate account" });
     return;
   }
   //Increment the lastUserId.value to generate a new unique ID for the practitioner.
   lastUserId.value += Math.floor(Math.random() * 9) + 1;
-  req.practitioners.push({ email, password, id: lastUserId.value });
-
+  req.practitioners.push({
+    email,
+    password,
+    id: lastUserId.value,
+    name: body.name,
+    about: body.about,
+    qualifications: body.qualifications,
+    specialization: body.specialization,
+    userType: "practitioner",
+  });
+  //remove password
+  delete req.body.password;
   //Send a response with status code 1 and& generated ID indicating successful addition of the new practitioner.
-  res.send({ status: 1, id: lastUserId.value });
+  res.send({
+    status: 1,
+    id: lastUserId.value,
+    currentUser: req.body,
+  }); //add user: userData  ?
 });
 
 module.exports = router;

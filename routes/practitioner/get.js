@@ -2,16 +2,20 @@ const express = require("express");
 const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
-const { getPractitioner, getPractitionerIndexOfById } = require("../utils");
+const {
+  getPractitioner,
+  getPractitionerIndexOfById,
+} = require("../practitioner/utils");
 
 // GET route to retrieve all practitioners:
 // Defines a GET route handler for the root path ("/") - takes a request & response object as parameters.
 router.get("/", (req, res) => {
+  //update to/practitioners ???
   //copies array of practitioners from the req object
   const practitioners = [...req.practitioners];
   //iterate through each practitioner
   practitioners.forEach((practitioner) => {
-    // delete practitioner.location; // removes 'location' from practitioner data
+    delete practitioner.password; //remove password
   });
   //Sends the array of practitioners as the response using res.send().
   res.send(req.practitioners);

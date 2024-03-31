@@ -16,15 +16,25 @@ app.use(express.json());
 app.use(function (req, res, next) {
   req.practitioners = practitioners;
   req.patients = patients;
-  req.req.lastUserId = lastUserId;
+  req.lastUserId = lastUserId;
   next();
 });
 
 //Route Handlers:
-app.use("/user/get", require("./routes/practitioner/get"));
-app.use("/user/add", require("./routes/practitioner/add"));
-app.use("/user/delete", require("./routes/practitioner/delete"));
-app.use("/user/update", require("./routes/practitioner/update"));
+app.use("/practitioner/get", require("./routes/practitioner/get"));
+app.use("/practitioner/add", require("./routes/practitioner/add"));
+app.use("/practitioner/delete", require("./routes/practitioner/delete"));
+app.use("/practitioner/update", require("./routes/practitioner/update"));
+
+// Define route handler for the root path ("/")
+app.get("/", (req, res) => {
+  res.send("Hello, this is the backend server for the practitioner app.");
+});
+
+// Route handler to send initial practitioner data
+app.get("/practitioner/get", (req, res) => {
+  res.json(practitionerInitialData);
+});
 
 const PORT = process.env.PORT || 6001;
 app.listen(PORT, () => {

@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
-const { getPractitioner, getPractitionerIndexOfById } = require("../utils");
+const {
+  getPractitioner,
+  getPractitionerIndexOfById,
+} = require("../practitioner/utils");
 
 // UPDATE route handles PATCH requests with a dynamic parameter :id.
 router.patch("/:id", (req, res) => {

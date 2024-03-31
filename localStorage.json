@@ -11,20 +11,8 @@
     ],
     "style": "Just as happy chatting as giving you some 'you time' during treatment",
     "starReviews": 5,
-    "image": "/images/taylor_gibney.jpeg"
-  },
-  {
-    "name": "John Smith",
-    "specialization": "Physiotherapy",
-    "location": "London, UK",
-    "about": "I am a certified physiotherapist with over 10 years of experience.",
-    "experience": "10+ years",
-    "qualifications": [
-      "Bachelor's Degree in Physiotherapy",
-      "Certified Manual Therapist"
-    ],
-    "starReviews": 4.8,
-    "image": "https://randomuser.me/api/portraits/men/1.jpg"
+    "image": "/images/taylor_gibney.jpeg",
+    "id": 1
   },
   {
     "name": "Emily Johnson",
