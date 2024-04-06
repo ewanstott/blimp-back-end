@@ -10,4 +10,8 @@ function getPatientIndexOfById(patients, id) {
   });
 }
 
-module.exports = { getPatient, getPatientIndexOfById };
+function getRandom() {
+  return Math.floor(Math.random() * 1000000000000000);
+}
+
+module.exports = { getPatient, getPatientIndexOfById, getRandom };

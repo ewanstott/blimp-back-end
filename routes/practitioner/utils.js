@@ -10,4 +10,8 @@ function getPractitionerIndexOfById(practitioners, id) {
   });
 }
 
-module.exports = { getPractitioner, getPractitionerIndexOfById };
+function getRandom() {
+  return Math.floor(Math.random() + 1000000000000000);
+}
+
+module.exports = { getPractitioner, getPractitionerIndexOfById, getRandom };
