@@ -2,7 +2,12 @@ const express = require("express");
 const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
-const { getPatient, getPatientIndexOfById } = require("../patient/utils");
+const {
+  getPatient,
+  getPatientIndexOfById,
+  getRandom,
+} = require("../patient/utils");
+const { checkToken } = require("./middleware");
 
 //store all patient signup data
 
@@ -28,21 +33,19 @@ router.post("/", (req, res) => {
   }
   //Increment the lastUserId.value to generate a new unique ID for the patient.
   lastUserId.value += Math.floor(Math.random() * 9) + 1000;
-  req.patients.push({
-    name: body.name,
+
+  //login at same time
+  const token = getRandom();
+
+  const newPatient = {
     email,
     password,
     id: lastUserId.value,
-    userType: "patient",
-  });
-  //remove password
-  delete req.body.password;
-  //Send a response with status code 1 and& generated ID indicating successful addition of the new patient.
-  res.send({
-    status: 1,
-    id: lastUserId.value,
-    currentUser: req.body,
-  });
+    token: [{ token, issueDate: Date.now() }],
+  };
+
+  req.patients.push(newPatient);
+  res.send({ status: 1, id: lastUserId.value, token });
 });
 
 module.exports = router;

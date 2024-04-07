@@ -5,7 +5,7 @@ const { salt } = require("../../secrets");
 const { getPatient, getPatientIndexOfById } = require("../patient/utils");
 const { checkIsPatient, checkToken } = require("./middleware");
 
-//MUST be removed before deployment
+//MUST be removed before deployment (used for TESTING PURPOSES - to lookup all data in system )
 router.get("/", (req, res) => {
   res.send(req.patients);
 });

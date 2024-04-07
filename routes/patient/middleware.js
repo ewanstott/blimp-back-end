@@ -32,6 +32,7 @@ function checkToken(req, res, next) {
 
     return (
       patient.token &&
+      Array.isArray(patient.token) &&
       patient.token.find((token) => {
         return token.token === req.headers.token;
       })

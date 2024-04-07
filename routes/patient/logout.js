@@ -3,7 +3,10 @@ const { checkToken } = require("./middleware");
 const router = express.Router();
 
 router.delete("/", checkToken, (req, res) => {
-  req.authedPatient.token = undefined;
+  req.authedPatient.token.splice(
+    req.authedPatient.token.indexOf(req.headers.token),
+    1
+  );
 
   res.send({ status: 1 });
 });

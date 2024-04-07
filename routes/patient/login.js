@@ -23,7 +23,9 @@ router.post("/", (req, res) => {
   }
 
   const token = getRandom();
-  patient.token = token;
+  patient.token
+    ? patient.token.push({ token, issueDate: Date.now() })
+    : (patient.token = [{ token, issueDate: Date.now() }]);
   res.send({ status: 1, token });
 });
 
