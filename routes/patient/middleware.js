@@ -1,6 +1,6 @@
 const { getPatientIndexOfById } = require("../patient/utils");
 
-function checkIsUser(req, res, next) {
+function checkIsPatient(req, res, next) {
   const patient = req.patients.find((patient) => {
     return req.body.email === patient.email;
   });
@@ -30,15 +30,18 @@ function checkToken(req, res, next) {
     //   }
     // });
 
-    return patient.token.find((token) => {
-      return token.token === req.headers.token;
-    });
+    return (
+      patient.token &&
+      patient.token.find((token) => {
+        return token.token === req.headers.token;
+      })
+    );
 
     //patient.token === Number(req.headers.token);
   });
 
   if (patient) {
-    req.authedUser = patient;
+    req.authedPatient = patient;
     next();
     return;
   }
@@ -46,4 +49,4 @@ function checkToken(req, res, next) {
   res.send({ status: 0, reason: "Bad token" });
 }
 
-module.exports = { checkIsUser, checkToken };
+module.exports = { checkIsPatient, checkToken };

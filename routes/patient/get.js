@@ -3,15 +3,15 @@ const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
 const { getPatient, getPatientIndexOfById } = require("../patient/utils");
-const { checkIsUser, checkToken } = require("./middleware");
+const { checkIsPatient, checkToken } = require("./middleware");
 
 //MUST be removed before deployment
 router.get("/", (req, res) => {
-  res.send(req.users);
+  res.send(req.patients);
 });
 
 router.get("/:id", checkToken, (req, res) => {
-  res.send({ status: 1, user: req.authedUser });
+  res.send({ status: 1, patient: req.authedPatient });
 });
 
 module.exports = router;

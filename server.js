@@ -27,12 +27,14 @@ app.use("/practitioner/add", require("./routes/practitioner/add"));
 app.use("/practitioner/delete", require("./routes/practitioner/delete"));
 app.use("/practitioner/update", require("./routes/practitioner/update"));
 // app.use("/practitioner/login", require("./routes/practitioner/login"));
+// app.use("/patient/logout", require("./routes/patient/logout"));
 //patient
 app.use("/patient/get", require("./routes/patient/get"));
 app.use("/patient/add", require("./routes/patient/add"));
 app.use("/patient/delete", require("./routes/patient/delete"));
 app.use("/patient/update", require("./routes/patient/update"));
 app.use("/patient/login", require("./routes/patient/login"));
+app.use("/patient/logout", require("./routes/patient/logout"));
 //message
 // app.use("/message/get", require("./routes/message/get"));
 // app.use("/message/add", require("./routes/message/add"));
