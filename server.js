@@ -26,8 +26,8 @@ app.use("/practitioner/get", require("./routes/practitioner/get"));
 app.use("/practitioner/add", require("./routes/practitioner/add"));
 app.use("/practitioner/delete", require("./routes/practitioner/delete"));
 app.use("/practitioner/update", require("./routes/practitioner/update"));
-// app.use("/practitioner/login", require("./routes/practitioner/login"));
-// app.use("/patient/logout", require("./routes/patient/logout"));
+app.use("/practitioner/login", require("./routes/practitioner/login"));
+app.use("/practitioner/logout", require("./routes/practitioner/logout"));
 //patient
 app.use("/patient/get", require("./routes/patient/get"));
 app.use("/patient/add", require("./routes/patient/add"));

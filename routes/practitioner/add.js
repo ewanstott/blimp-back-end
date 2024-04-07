@@ -5,7 +5,9 @@ const { salt } = require("../../secrets");
 const {
   getPractitioner,
   getPractitionerIndexOfById,
+  getRandom,
 } = require("../practitioner/utils");
+const { checkToken } = require("./middleware");
 
 //store all practitioner signup data
 
@@ -30,28 +32,20 @@ router.post("/", (req, res) => {
     return;
   }
   //Increment the lastUserId.value to generate a new unique ID for the practitioner.
-  lastUserId.value += Math.floor(Math.random() * 9) + 1;
-  req.practitioners.push({
+  lastUserId.value += Math.floor(Math.random() * 9) + 1000;
+
+  //login at same time
+  const token = getRandom();
+
+  const newPractitioner = {
     email,
     password,
     id: lastUserId.value,
-    name: body.name,
-    about: body.about,
-    qualifications: body.qualifications,
-    specialization: body.specialization,
-    userType: "practitioner",
-  });
-  //remove password
-  delete req.body.password;
-  //Send a response with status code 1 and& generated ID indicating successful addition of the new practitioner.
-  res.send({
-    status: 1,
-    id: lastUserId.value,
-    currentUser: req.body,
-  }); //add user: userData  ?
+    token: [{ token, issueDate: Date.now() }],
+  };
+
+  req.practitioners.push(newPractitioner);
+  res.send({ status: 1, id: lastUserId.value, token });
 });
 
 module.exports = router;
-
-//backend should take all data (inc. patient / practitioner data type)
-//Once stored, return userType to front -> put back into store so local copy
