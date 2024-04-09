@@ -13,7 +13,7 @@ const { checkToken } = require("./middleware");
 
 router.post("/", (req, res) => {
   let { patients, body, lastUserId } = req; //Destructures the patients, body, and lastUserId properties from the request object (req).
-  let { email, password } = body; //Destructures the email and password properties from the request body.
+  let { name, email, password, userType } = body; //Destructures the email and password properties from the request body.
 
   //Validates whether the email and password fields are provided. If not, it sends a response with status code 0 and a reason indicating missing data.
   if (!email || !password) {
@@ -36,16 +36,18 @@ router.post("/", (req, res) => {
 
   //login at same time
   const token = getRandom();
-
+  //2:27 -> continue
   const newPatient = {
+    name,
     email,
     password,
+    userType,
     id: lastUserId.value,
     token: [{ token, issueDate: Date.now() }],
   };
 
   req.patients.push(newPatient);
-  res.send({ status: 1, id: lastUserId.value, token });
+  res.send({ status: 1, id: lastUserId.value, token, name, email, userType });
 });
 
 module.exports = router;
