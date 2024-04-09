@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
   patient.token
     ? patient.token.push({ token, issueDate: Date.now() })
     : (patient.token = [{ token, issueDate: Date.now() }]);
-  res.send({ status: 1, token });
+  res.send({ status: 1, token, user: patient });
 });
 
 module.exports = router;
