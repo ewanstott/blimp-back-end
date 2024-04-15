@@ -2,15 +2,12 @@ const express = require("express");
 const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
-const { getPatient, getPatientIndexOfById } = require("../patient/utils");
-const { checkToken } = require("./middleware");
+const { deletePatient } = require("../../mysql-patients/queries");
+const asyncMySQL = require("../../mysql-patients/driver");
+const { checkIsPatient } = require("./middleware");
 
-router.delete("/:id", checkToken, (req, res) => {
-  console.log(req.authedPatient);
-  delete req.authedPatient.email;
-  delete req.authedPatient.id;
-  delete req.authedPatient.token;
-  delete req.authedPatient.password;
+router.delete("/:id", checkIsPatient, async (req, res) => {
+  await asyncMySQL(deletePatient(req.authPatient));
 
   //Send a response with status code 1 to indicate successful deletion of the patient.
   res.send({ status: 1, reason: "Successfully deleted user" });

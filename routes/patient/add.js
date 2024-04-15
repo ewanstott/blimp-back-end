@@ -3,8 +3,8 @@ const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
 const { getRandom } = require("../patient/utils");
-const asyncMySQL = require("../../mysql/queries");
-const { addUser, addToken } = require("../../mysql/queries");
+const asyncMySQL = require("../../mysql-patients/driver");
+const { addToken, addPatient } = require("../../mysql-patients/queries");
 
 router.post("/", async (req, res) => {
   //destructure email and password
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
 
   try {
     //add the user
-    const result = await asyncMySQL(addUser(email, password));
+    const result = await asyncMySQL(addPatient(email, password));
 
     //add token
     await asyncMySQL(addToken(result.insertId, token));

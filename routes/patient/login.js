@@ -3,6 +3,7 @@ const router = express.Router();
 const { salt } = require("../../secrets");
 const sha256 = require("sha256");
 const { getRandom } = require("../patient/utils");
+const asyncMySQL = require("../../mysql-patients/driver");
 
 router.post("/", async (req, res) => {
   let { email, password } = req.body;
@@ -11,15 +12,18 @@ router.post("/", async (req, res) => {
 
   password = sha256(password + salt);
 
-  const results = await asyncMySQL(`SELECT * FROM users
+  const results = await asyncMySQL(`SELECT * FROM patients
                                       WHERE email LIKE "${email}" 
                                         AND password LIKE "${password}";`);
+  console.log("Results:", results);
 
   if (results.length > 0) {
     const token = getRandom();
 
+    // console.log("Patient ID:", results[0].patient_id);
+
     await asyncMySQL(`INSERT INTO sessions
-                          (user_id, token)
+                          (id, token)
                              VALUES
                                (${results[0].id}, "${token}");`);
 
@@ -62,7 +66,7 @@ module.exports = router;
 //   patient.token
 //     ? patient.token.push({ token, issueDate: Date.now() })
 //     : (patient.token = [{ token, issueDate: Date.now() }]);
-//   res.send({ status: 1, token, user: patient });
+//   res.send({ status: 1, token, patient: patient });
 // });
 
 // module.exports = router;
