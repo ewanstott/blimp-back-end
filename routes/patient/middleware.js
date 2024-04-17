@@ -2,13 +2,13 @@ const asyncMySQL = require("../../mysql-patients/driver");
 const { checkToken } = require("../../mysql-patients/queries");
 
 async function checkIsPatient(req, res, next) {
-  console.log("Here");
   const results = await asyncMySQL(checkToken(req.headers.token));
 
   console.log(results);
+  console.log(req.headers.token);
 
   if (results.length) {
-    req.authPatient = results[0].id; //
+    req.authPatient = results[0].id;
     next();
     return;
   }

@@ -1,8 +1,8 @@
-function addPatient(email, password, name) {
+function addPatient(email, password, name, userType) {
   return `INSERT INTO patients
-                (email, password, name)
+                (email, password, name, userType)
                     VALUES
-                      ("${email}", "${password}", "${name}");`;
+                      ("${email}", "${password}", "${name}", "${userType}");`;
 }
 
 function addToken(patientId, token) {
@@ -19,13 +19,14 @@ function deleteToken(token) {
 
 function deletePatient(id) {
   return `DELETE patients, sessions FROM patients
-id                      WHERE token LIKE "${id}"`;
+                   JOIN sessions on patients.id = sessions.id
+                            WHERE patients.id = ${id}`;
 }
 
 function updatePatient(key, value, id) {
   return `UPDATE patients
                       SET ${key} = "${value}"
-                          WHERE patients.id LIKE "${id}";`;
+                          WHERE patients.id = ${id};`;
 }
 
 function checkToken(token) {

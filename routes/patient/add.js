@@ -8,7 +8,7 @@ const { addToken, addPatient } = require("../../mysql-patients/queries");
 
 router.post("/", async (req, res) => {
   //destructure email and password
-  let { email, password, name } = req.body;
+  let { email, password, name, userType } = req.body;
 
   //if no email or password, quit
   if (!email || !password) {
@@ -23,13 +23,15 @@ router.post("/", async (req, res) => {
 
   try {
     //add the user
-    const result = await asyncMySQL(addPatient(email, password, name));
+    const result = await asyncMySQL(
+      addPatient(email, password, name, userType)
+    );
 
     //add token
     await asyncMySQL(addToken(result.insertId, token));
 
     //if successfull, status 1
-    res.send({ status: 1, token, email, name });
+    res.send({ status: 1, token, email, name, userType });
   } catch (e) {
     //if not, must be a duplicate user
     console.log(e);

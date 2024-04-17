@@ -20,6 +20,8 @@ router.post("/", async (req, res) => {
 
   if (results.length > 0) {
     const token = getRandom();
+    const userType = results[0].userType;
+    console.log(userType);
 
     // console.log("Patient ID:", results[0].patient_id);
 
@@ -28,7 +30,7 @@ router.post("/", async (req, res) => {
                              VALUES
                                (${results[0].id}, "${token}");`);
 
-    res.send({ status: 1, token, name: results[0].name, email });
+    res.send({ status: 1, token, name: results[0].name, email, userType });
     return;
   }
 
@@ -69,5 +71,4 @@ module.exports = router;
 //     : (patient.token = [{ token, issueDate: Date.now() }]);
 //   res.send({ status: 1, token, patient: patient });
 // });
-
 // module.exports = router;

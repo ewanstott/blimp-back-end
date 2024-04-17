@@ -6,7 +6,7 @@ const { deletePatient } = require("../../mysql-patients/queries");
 const asyncMySQL = require("../../mysql-patients/driver");
 const { checkIsPatient } = require("./middleware");
 
-router.delete("/:id", checkIsPatient, async (req, res) => {
+router.delete("/", checkIsPatient, async (req, res) => {
   await asyncMySQL(deletePatient(req.authPatient));
 
   //Send a response with status code 1 to indicate successful deletion of the patient.
