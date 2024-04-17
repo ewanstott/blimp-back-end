@@ -1,8 +1,8 @@
-function addPatient(email, password) {
+function addPatient(email, password, name) {
   return `INSERT INTO patients
-                (email, password)
+                (email, password, name)
                     VALUES
-                      ("${email}", "${password}");`;
+                      ("${email}", "${password}", "${name}");`;
 }
 
 function addToken(patientId, token) {

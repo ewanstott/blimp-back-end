@@ -4,6 +4,7 @@ const { salt } = require("../../secrets");
 const sha256 = require("sha256");
 const { getRandom } = require("../patient/utils");
 const asyncMySQL = require("../../mysql-patients/driver");
+var cookieParser = require("cookie-parser");
 
 router.post("/", async (req, res) => {
   let { email, password } = req.body;
@@ -27,7 +28,7 @@ router.post("/", async (req, res) => {
                              VALUES
                                (${results[0].id}, "${token}");`);
 
-    res.send({ status: 1, token });
+    res.send({ status: 1, token, name: results[0].name, email });
     return;
   }
 
