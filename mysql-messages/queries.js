@@ -1,8 +1,8 @@
-function addMessage(message_id, sender_id, receiver_id, userType, sent_at) {
+function addMessage(sender_id, receiver_id, message) {
   return `INSERT INTO messages
-                (message_id, sender_id, receiver_id, userType, sent_at)
+                (sender_id, receiver_id, message)
                     VALUES
-                      ("${message_id}", "${sender_id}", "${receiver_id}", "${message}", "${sent_at}");`;
+                      (${sender_id}, ${receiver_id}, "${message}");`;
 }
 
 function deleteMessage(id) {

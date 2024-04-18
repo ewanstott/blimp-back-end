@@ -2,19 +2,19 @@ const express = require("express");
 const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
-const { getRandom } = require("../patient/utils");
 const asyncMySQL = require("../../mysql-patients/driver");
 const { addToken, addPatient } = require("../../mysql-patients/queries");
 const { addMessage } = require("../../mysql-messages/queries");
+const { checkIsUser } = require("./middleware");
 
-router.post("/", async (req, res) => {
+router.post("/", checkIsUser, async (req, res) => {
   // Destructure necessary data from the request body
-  const { message_id, sender_id, receiver_id, userType, sent_at } = req.body;
+  const { receiver_id, message } = req.body;
 
   try {
     // Insert the message into the database
     const result = await asyncMySQL(
-      addMessage(message_id, sender_id, receiver_id, userType, sent_at)
+      addMessage(req.authUser, receiver_id, message)
     );
 
     // If successful, send success response

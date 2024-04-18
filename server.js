@@ -36,9 +36,9 @@ app.use("/patient/update", require("./routes/patient/update"));
 app.use("/patient/login", require("./routes/patient/login"));
 app.use("/patient/logout", require("./routes/patient/logout"));
 //message
-// app.use("/message/get", require("./routes/message/get"));
-// app.use("/message/add", require("./routes/message/add"));
-// app.use("/message/delete", require("./routes/message/delete"));
+app.use("/message/get", require("./routes/message/get"));
+app.use("/message/add", require("./routes/message/add"));
+app.use("/message/delete", require("./routes/message/delete"));
 // app.use("/message/update", require("./routes/message/update"));
 
 // Define route handler for the root path ("/")
