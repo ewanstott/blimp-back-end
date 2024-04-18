@@ -1,12 +1,11 @@
 const express = require("express");
-const { checkToken } = require("./middleware");
+const { checkIsPractitioner } = require("./middleware");
+const { deleteToken } = require("../../mysql-practitioners/queries");
 const router = express.Router();
+const asyncMySQL = require("../../mysql-patients/driver");
 
-router.delete("/", checkToken, (req, res) => {
-  req.authedPractitioner.token.splice(
-    req.authedPractitioner.token.indexOf(req.headers.token),
-    1
-  );
+router.delete("/", checkIsPractitioner, async (req, res) => {
+  await asyncMySQL(deleteToken(req.headers.token));
 
   res.send({ status: 1 });
 });

@@ -2,12 +2,15 @@ const express = require("express");
 const router = express.Router();
 const sha256 = require("sha256");
 const { salt } = require("../../secrets");
-const { deletePractitioner } = require("../../mysql-practitioners/queries");
-const asyncMySQL = require("../../mysql-patients/driver");
-const { checkIsPractitioner } = require("./middleware");
+const { getPractitioner, getPractitionerIndexOfById } = require("./utils");
+const { checkToken } = require("./middleware");
 
-router.delete("/", checkIsPractitioner, async (req, res) => {
-  await asyncMySQL(deletePractitioner(req.authPractitioner));
+router.delete("/:id", checkToken, (req, res) => {
+  console.log(req.authedPractitioner);
+  delete req.authedPractitioner.email;
+  delete req.authedPractitioner.id;
+  delete req.authedPractitioner.token;
+  delete req.authedPractitioner.password;
 
   //Send a response with status code 1 to indicate successful deletion of the practitioner.
   res.send({ status: 1, reason: "Successfully deleted user" });
@@ -29,7 +32,7 @@ module.exports = router;
 //   }
 
 //   // find the index of the practitioner in the practitioners array based on their ID.
-//   const indexOf = getPatientIndexOfById(practitioners, id);
+//   const indexOf = getPractitionerIndexOfById(practitioners, id);
 
 //   //Checks if the index is -1, indicating that the practitioner with the provided ID was not found.
 //   if (indexOf === -1) {
