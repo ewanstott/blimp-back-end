@@ -16,9 +16,14 @@ function deleteMessage(id) {
 //                           WHERE messages.id = ${id};`;
 // }
 
-function getMessage(token) {
-  return `SELECT * FROM messages
-                      WHERE messaged.id = "${id}";`;
+function getReceived(user_id, practitionerId) {
+  return `SELECT message_id AS messageId, sender_id AS senderId, sent_at message FROM messages
+                      WHERE messages.receiver_id = ${user_id} AND sender_id = "${practitionerId}"`;
+}
+
+function getSent(user_id, practitionerId) {
+  return `SELECT message_id AS messageId, receiver_id AS receiverId, message FROM messages
+  WHERE messages.sender_id = ${user_id} AND receiver_id = "${practitionerId}";`;
 }
 
 // JOIN sessions ON messages.id = sessions.id
@@ -27,5 +32,6 @@ module.exports = {
   addMessage,
   deleteMessage,
   // updateMessage,
-  getMessage,
+  getReceived,
+  getSent,
 };

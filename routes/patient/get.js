@@ -11,7 +11,6 @@ router.get("/:id", checkIsPatient, async (req, res) => {
   console.log("Here");
   const results = await asyncMySQL(getPatient(req.headers.token));
 
-  //the magic
   res.send({ status: 1, patient: results[0] });
 });
 
