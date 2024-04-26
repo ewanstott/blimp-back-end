@@ -10,12 +10,6 @@ function deleteMessage(id) {
                             WHERE messages.id = ${id}`;
 }
 
-// function updateMessage(key, value, id) {
-//   return `UPDATE messages
-//                       SET ${key} = "${value}"
-//                           WHERE messages.id = ${id};`;
-// }
-
 function getReceived(user_id, practitionerId) {
   return `SELECT message_id AS messageId, sender_id AS senderId, sent_at message FROM messages
                       WHERE messages.receiver_id = ${user_id} AND sender_id = "${practitionerId}"`;
@@ -26,12 +20,32 @@ function getSent(user_id, practitionerId) {
   WHERE messages.sender_id = ${user_id} AND receiver_id = "${practitionerId}";`;
 }
 
-// JOIN sessions ON messages.id = sessions.id
+////////////////NEW///////////////
+function getMessagedPractitioners(userId) {
+  return `
+  SELECT * FROM messages
+	JOIN practitioners on messages.sender_id = practitioners.id
+	WHERE receiver_id = ${userId};
+  `;
+}
+////////////////NEW///////////////
+
+////////////////NEW///////////////
+function getMessageHistory(userId, practitionerId) {
+  return `
+    SELECT *
+    FROM messages
+    WHERE (sender_id = ${userId} AND receiver_id = ${practitionerId})
+    OR (sender_id = ${practitionerId} AND receiver_id = ${userId})
+  `;
+}
+////////////////NEW///////////////
 
 module.exports = {
   addMessage,
   deleteMessage,
-  // updateMessage,
   getReceived,
   getSent,
+  getMessagedPractitioners,
+  getMessageHistory,
 };
