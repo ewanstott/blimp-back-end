@@ -6,8 +6,12 @@ const { getMessageHistory } = require("../../mysql-messages/queries");
 const { checkIsUser } = require("./middleware");
 
 router.get("/:practitionerId", checkIsUser, async (req, res) => {
-  const { userId } = req.authUser;
+  //:practitionerId ??
+  //headers are always strings (not case sensitive)
+  const userId = req.authUser;
   const { practitionerId } = req.params;
+  console.log(userId);
+  console.log(practitionerId);
 
   try {
     const messages = await asyncMySQL(

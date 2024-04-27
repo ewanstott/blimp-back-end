@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 const practitionerInitialData = require("./localStorage.json");
+const asyncMySQL = require("./mysql-patients/driver");
 
 //users state
 const patients = [];
@@ -56,3 +57,35 @@ const PORT = process.env.PORT || 6001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+//add script here
+
+// practitioners.forEach((practitioner) => {
+//   console.log(practitioner);
+//   const SQL = `INSERT INTO practitioners
+//   (name,
+//     email,
+//     password,
+//     userType,
+//   specialization,
+//   location,
+//   about,
+//   experience,
+//   qualifications,
+//   star_reviews,
+//   image)
+//   VALUES("${practitioner.name}",
+//   "${Math.random()}",
+//   "${Math.random()}",
+//   "practitioner",
+//     "${practitioner.specialization}",
+//   "${practitioner.location}",
+//   "${practitioner.about.replaceAll("'", "\\'")}",
+//   "${practitioner.experience.replaceAll("'", "\\'")}",
+//   "${practitioner.qualifications.replaceAll("'", "\\'")}",
+//   "${practitioner.starReviews}",
+//   "${practitioner.image}");
+//   `;
+//   console.log(SQL);
+//   asyncMySQL(SQL);
+// });
