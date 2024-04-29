@@ -9,6 +9,7 @@ router.get("/", checkIsUser, async (req, res) => {
   const userId = req.authUser;
 
   try {
+    console.log(getMessagedPractitioners(userId));
     const practitioners = await asyncMySQL(getMessagedPractitioners(userId));
     res.json({ status: 1, practitioners });
   } catch (error) {

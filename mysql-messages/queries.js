@@ -23,9 +23,9 @@ function getSent(user_id, practitionerId) {
 ////////////////NEW///////////////
 function getMessagedPractitioners(userId) {
   return `
-  SELECT * FROM messages
-	JOIN practitioners on messages.sender_id = practitioners.id
-	WHERE receiver_id = ${userId};
+  SELECT DISTINCT name, id FROM messages
+  JOIN practitioners on messages.receiver_id = practitioners.id
+  WHERE sender_id = ${userId};
   `;
 }
 ////////////////NEW///////////////

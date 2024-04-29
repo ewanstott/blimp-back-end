@@ -10,8 +10,8 @@ router.get("/:practitionerId", checkIsUser, async (req, res) => {
   //headers are always strings (not case sensitive)
   const userId = req.authUser;
   const { practitionerId } = req.params;
-  console.log(userId);
-  console.log(practitionerId);
+  console.log("userId: ", userId);
+  console.log("practitionerId: ", practitionerId);
 
   try {
     const messages = await asyncMySQL(

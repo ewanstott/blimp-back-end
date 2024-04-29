@@ -2,22 +2,22 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 app.use(cors());
-const practitionerInitialData = require("./localStorage.json");
+// const practitionerInitialData = require("./localStorage.json");
 const asyncMySQL = require("./mysql-patients/driver");
 
 //users state
-const patients = [];
-const practitioners = [...practitionerInitialData]; //starter data
-const messages = [];
-let lastUserId = { value: 1000 };
+// const patients = [];
+// const practitioners = [...practitionerInitialData];
+// const messages = [];
+// let lastUserId = { value: 1000 };
 
 app.use(express.json());
 
 //middleware that adds the users array to the request
 app.use(function (req, res, next) {
-  req.practitioners = practitioners;
-  req.patients = patients;
-  req.lastUserId = lastUserId;
+  // req.practitioners = practitioners;
+  // req.patients = patients;
+  // req.lastUserId = lastUserId;
   next();
 });
 
@@ -48,17 +48,12 @@ app.get("/", (req, res) => {
   res.send("Hello, this is the backend server for the practitioner app.");
 });
 
-// Route handler to send initial practitioner data
-app.get("/practitioner/get", (req, res) => {
-  res.json(practitionerInitialData);
-});
-
 const PORT = process.env.PORT || 6001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-//add script here
+//add script here to import practitioners into SQL database (run this once only)
 
 // practitioners.forEach((practitioner) => {
 //   console.log(practitioner);

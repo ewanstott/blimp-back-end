@@ -15,6 +15,14 @@ router.get("/:id", checkIsPractitioner, async (req, res) => {
   res.send({ status: 1, practitioner: results[0] });
 });
 
+router.get("/", async (req, res) => {
+  const results = await asyncMySQL(`
+  SELECT name, id, userType, specialization, qualifications, experience, about, image
+  FROM practitioners;
+  `);
+  res.send({ status: 1, practitioners: results });
+});
+
 module.exports = router;
 
 //OLD//
