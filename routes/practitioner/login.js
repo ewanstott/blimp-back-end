@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
     const userType = results[0].userType;
     const specialization = results[0].specialization;
     const qualifications = results[0].qualifications;
+    const location = results[0].location;
     const experience = results[0].experience;
     const about = results[0].about;
     const image = results[0].image;
@@ -39,11 +40,13 @@ router.post("/", async (req, res) => {
       name: results[0].name,
       email,
       userType,
+      location,
       specialization,
       qualifications,
       experience,
       about,
       image,
+      file,
     });
     return;
   }

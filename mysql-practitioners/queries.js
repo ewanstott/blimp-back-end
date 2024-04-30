@@ -4,15 +4,16 @@ function addPractitioner(
   password,
   userType,
   specialization,
+  location,
   qualifications,
   experience,
   about,
   image
 ) {
   return `INSERT INTO practitioners
-                (name, email, password, userType, specialization, star_reviews, qualifications, experience, about, image)
+                (name, email, password, userType, specialization, location, qualifications, experience, about, image)
                     VALUES
-                      ("${name}", "${email}", "${password}", "${userType}", "${specialization}", "${star_reviews}", "${qualifications}", "${experience}", "${about}", "${image}");`;
+                      ("${name}", "${email}", "${password}", "${userType}", "${location}", "${specialization}", "${qualifications}", "${experience}", "${about}", "${image}");`;
 }
 
 function addToken(practitionerId, token) {

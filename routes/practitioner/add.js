@@ -10,17 +10,18 @@ const {
 } = require("../../mysql-practitioners/queries");
 
 router.post("/", async (req, res) => {
-  //destructure email and password
+  //destructure
   let {
     name,
     email,
     password,
     userType,
     specialization,
+    location,
     qualifications,
-    experience, // Check whether Experience dropdown works in mysql
+    experience,
     about,
-    image, //@ask Russell
+    image,
   } = req.body;
 
   //if no email or password, quit
@@ -43,6 +44,7 @@ router.post("/", async (req, res) => {
         password,
         userType,
         specialization,
+        location,
         qualifications,
         experience,
         about,
@@ -60,6 +62,7 @@ router.post("/", async (req, res) => {
       name,
       email,
       userType,
+      location,
       specialization,
       qualifications,
       experience,

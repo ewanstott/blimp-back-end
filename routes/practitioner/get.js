@@ -11,13 +11,12 @@ router.get("/:id", checkIsPractitioner, async (req, res) => {
   console.log("Here");
   const results = await asyncMySQL(getPractitioner(req.headers.token));
 
-  //the magic
   res.send({ status: 1, practitioner: results[0] });
 });
 
 router.get("/", async (req, res) => {
   const results = await asyncMySQL(`
-  SELECT name, id, userType, specialization, star_reviews, qualifications, experience, about, image
+  SELECT name, id, userType, specialization, location, qualifications, experience, about, image
   FROM practitioners;
   `);
   res.send({ status: 1, practitioners: results });
