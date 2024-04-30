@@ -1,4 +1,3 @@
-////////////////NEW///////////////
 const express = require("express");
 const router = express.Router();
 const asyncMySQL = require("../../mysql-patients/driver");
@@ -25,5 +24,3 @@ router.get("/:practitionerId", checkIsUser, async (req, res) => {
 });
 
 module.exports = router;
-
-////////////////NEW///////////////

@@ -10,9 +10,6 @@ const { getSent, getReceived } = require("../../mysql-messages/queries");
 router.get("/:id", checkIsUser, async (req, res) => {
   const practitionerId = req.params.id;
 
-  // const results = await asyncMySQL(getPatient(req.headers.token));
-  // res.send({ status: 1, patient: results[0] });
-
   try {
     // Fetch messages from the database for the specified user
     const sentMessages = await asyncMySQL(
@@ -23,14 +20,7 @@ router.get("/:id", checkIsUser, async (req, res) => {
     );
 
     const messages = [...sentMessages, ...receivedMessages];
-    // messages.sort((a, b) => {
-    //   if (a.receiver_id > b.receiver_id) {
-    //     return 1;
-    //   }
-    //   if (a.receiver_id < b.receiver_id) {
-    //     return -1;
-    //   }
-    // });
+
     // Send the messages in the response
     res.send({ status: 1, messages });
   } catch (error) {
@@ -40,6 +30,3 @@ router.get("/:id", checkIsUser, async (req, res) => {
 });
 
 module.exports = router;
-
-//use id to get messages
-//Check is user turns token into ID -> send to select request where reciever is ther person whos called the Get Route
