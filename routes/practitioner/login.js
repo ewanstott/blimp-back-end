@@ -46,7 +46,7 @@ router.post("/", async (req, res) => {
       experience,
       about,
       image,
-      file,
+      // file,
     });
     return;
   }

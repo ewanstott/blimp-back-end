@@ -10,6 +10,7 @@ const {
 } = require("../../mysql-practitioners/queries");
 
 router.post("/", async (req, res) => {
+  console.log(req.body);
   //destructure
   let {
     name,
@@ -21,7 +22,7 @@ router.post("/", async (req, res) => {
     qualifications,
     experience,
     about,
-    image,
+    file,
   } = req.body;
 
   //if no email or password, quit
@@ -48,7 +49,7 @@ router.post("/", async (req, res) => {
         qualifications,
         experience,
         about,
-        image
+        file
       )
     );
 
@@ -67,7 +68,7 @@ router.post("/", async (req, res) => {
       qualifications,
       experience,
       about,
-      image,
+      file,
     });
   } catch (e) {
     //if not, must be a duplicate user

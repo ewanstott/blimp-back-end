@@ -8,12 +8,12 @@ function addPractitioner(
   qualifications,
   experience,
   about,
-  image
+  file
 ) {
   return `INSERT INTO practitioners
                 (name, email, password, userType, specialization, location, qualifications, experience, about, image)
                     VALUES
-                      ("${name}", "${email}", "${password}", "${userType}", "${location}", "${specialization}", "${qualifications}", "${experience}", "${about}", "${image}");`;
+                      ("${name}", "${email}", "${password}", "${userType}", "${location}", "${specialization}", "${qualifications}", "${experience}", "${about}", "${file}");`;
 }
 
 function addToken(practitionerId, token) {
