@@ -42,6 +42,11 @@ app.use("/message/list", require("./routes/message/list"));
 app.use("/message/history", require("./routes/message/history"));
 app.use("/message/add", require("./routes/message/add"));
 app.use("/message/delete", require("./routes/message/delete"));
+//practitionerDashboard
+app.use(
+  "/practitionerDashboard/patients",
+  require("./routes/practitionerDashboard/patients")
+);
 
 // Define route handler for the root path ("/")
 app.get("/", (req, res) => {
