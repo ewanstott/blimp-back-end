@@ -1,12 +1,11 @@
 const express = require("express");
-const { checkToken } = require("./middleware");
+const { checkIsPatient } = require("./middleware");
+const { deleteToken } = require("../../mysql-patients/queries");
 const router = express.Router();
+const asyncMySQL = require("../../mysql-patients/driver");
 
-router.delete("/", checkToken, (req, res) => {
-  req.authedPatient.token.splice(
-    req.authedPatient.token.indexOf(req.headers.token),
-    1
-  );
+router.delete("/", checkIsPatient, async (req, res) => {
+  await asyncMySQL(deleteToken(req.headers.token));
 
   res.send({ status: 1 });
 });

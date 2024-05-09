@@ -1,0 +1,223 @@
+// [
+//   {
+//     "name": "Taylor Gibney",
+//     "specialization": "Physiotherapy",
+//     "location": "Bristol, UK",
+//     "about": "I am a certified physiotherapist with over 6 years of experience. I love hiking and the outdoors in my spare time",
+//     "experience": "6+ years",
+//     "qualifications": "Master's Degree in Physiotherapy, Certified Manual Therapist",
+//     "style": "Just as happy chatting as giving you some 'you time' during treatment",
+//     "starReviews": 5,
+//     "image": "taylor_gibney.jpeg",
+//     "id": 1
+//   },
+//   {
+//     "name": "Emily Johnson",
+//     "specialization": "Massage Therapy",
+//     "location": "Manchester, UK",
+//     "about": "I specialize in Swedish and deep tissue massage techniques.",
+//     "experience": "8+ years",
+//     "qualifications": "Diploma in Massage Therapy",
+//     "starReviews": 4.9,
+//     "image": "2.jpg",
+//     "id": 2
+//   },
+//   {
+//     "name": "David Brown",
+//     "specialization": "Chiropractic",
+//     "location": "Birmingham, UK",
+//     "about": "I provide chiropractic care for back pain, neck pain, and sports injuries.",
+//     "experience": "12+ years",
+//     "qualifications": "Doctor of Chiropractic (DC) degree",
+//     "starReviews": 4.7,
+//     "image": "3.jpg",
+//     "id": 3
+//   },
+//   {
+//     "name": "Sarah Jones",
+//     "specialization": "Acupuncture",
+//     "location": "Edinburgh, UK",
+//     "about": "I offer acupuncture treatments for various health conditions.",
+//     "experience": "6+ years",
+//     "qualifications": "Masters in Acupuncture",
+//     "starReviews": 4.6,
+//     "image": "4.jpg",
+//     "id": 4
+//   },
+//   {
+//     "name": "Michael Patel",
+//     "specialization": "Nutritionist",
+//     "location": "Leeds, UK",
+//     "about": "I provide personalized nutrition plans to promote health and wellness.",
+//     "experience": "8+ years",
+//     "qualifications": "Registered Dietitian (RD)",
+//     "starReviews": 4.9,
+//     "image": "5.jpg",
+//     "id": 5
+//   },
+//   {
+//     "name": "Jessica Wilson",
+//     "specialization": "Dentistry",
+//     "location": "Liverpool, UK",
+//     "about": "I am a dentist passionate about providing quality dental care.",
+//     "experience": "15+ years",
+//     "qualifications": "Doctor of Dental Surgery (DDS)",
+//     "starReviews": 4.8,
+//     "image": "6.jpg",
+//     "id": 6
+//   },
+//   {
+//     "name": "Andrew Taylor",
+//     "specialization": "Optometry",
+//     "location": "Glasgow, UK",
+//     "about": "I offer comprehensive eye exams and vision care services.",
+//     "experience": "10+ years",
+//     "qualifications": "Doctor of Optometry (OD)",
+//     "starReviews": 4.7,
+//     "image": "7.jpg",
+//     "id": 7
+//   },
+//   {
+//     "name": "Olivia Clark",
+//     "specialization": "Psychology",
+//     "location": "Bristol, UK",
+//     "about": "I provide counseling services for individuals and couples.",
+//     "experience": "8+ years",
+//     "qualifications": "Licensed Psychologist (PhD)",
+//     "starReviews": 4.9,
+//     "image": "8.jpg",
+//     "id": 8
+//   },
+//   {
+//     "name": "Daniel White",
+//     "specialization": "Podiatry",
+//     "location": "Sheffield, UK",
+//     "about": "I specialize in diagnosing and treating foot and ankle conditions.",
+//     "experience": "10+ years",
+//     "qualifications": "Doctor of Podiatric Medicine (DPM)",
+//     "starReviews": 4.6,
+//     "image": "9.jpg",
+//     "id": 9
+//   },
+//   {
+//     "name": "Sophia Martinez",
+//     "specialization": "Speech Therapy",
+//     "location": "Newcastle, UK",
+//     "about": "I offer speech therapy services for children and adults.",
+//     "experience": "7+ years",
+//     "qualifications": "Master's Degree in Speech-Language Pathology (SLP)",
+//     "starReviews": 4.8,
+//     "image": "10.jpg",
+//     "id": 10
+//   },
+//   {
+//     "name": "James Lee",
+//     "specialization": "Occupational Therapy",
+//     "location": "Cardiff, UK",
+//     "about": "I specialize in helping people regain independence in their daily lives.",
+//     "experience": "9+ years",
+//     "qualifications": "Master's Degree in Occupational Therapy",
+//     "starReviews": 4.7,
+//     "image": "11.jpg",
+//     "id": 11
+//   },
+//   {
+//     "name": "Ava Adams",
+//     "specialization": "Midwifery",
+//     "location": "Coventry, UK",
+//     "about": "I provide compassionate care and support during pregnancy and childbirth.",
+//     "experience": "12+ years",
+//     "qualifications": "Certified Nurse Midwife (CNM)",
+//     "starReviews": 4.9,
+//     "image": "12.jpg",
+//     "id": 12
+//   },
+//   {
+//     "name": "Ethan Turner",
+//     "specialization": "Physical Therapy",
+//     "location": "Nottingham, UK",
+//     "about": "I specialize in rehabilitation therapy for musculoskeletal injuries.",
+//     "experience": "11+ years",
+//     "qualifications": "Doctor of Physical Therapy (DPT)",
+//     "starReviews": 4.7,
+//     "image": "13.jpg",
+//     "id": 13
+//   },
+//   {
+//     "name": "Isabella Hill",
+//     "specialization": "Dietetics",
+//     "location": "Leicester, UK",
+//     "about": "I provide evidence-based nutrition counseling for various health conditions.",
+//     "experience": "8+ years",
+//     "qualifications": "Registered Dietitian Nutritionist (RDN)",
+//     "starReviews": 4.8,
+//     "image": "14.jpg",
+//     "id": 14
+//   },
+//   {
+//     "name": "Liam Phillips",
+//     "specialization": "Mental Health Counseling",
+//     "location": "Brighton, UK",
+//     "about": "I offer counseling services to help individuals cope with mental health challenges.",
+//     "experience": "9+ years",
+//     "qualifications": "Licensed Mental Health Counselor (LMHC)",
+//     "starReviews": 4.6,
+//     "image": "15.jpg",
+//     "id": 14
+//   },
+//   {
+//     "name": "Charlotte Bailey",
+//     "specialization": "Speech-Language Pathology",
+//     "location": "Oxford, UK",
+//     "about": "I specialize in evaluating and treating communication disorders.",
+//     "experience": "7+ years",
+//     "qualifications": "Master's Degree in Speech-Language Pathology (SLP)",
+//     "starReviews": 4.9,
+//     "image": "16.jpg",
+//     "id": 16
+//   },
+//   {
+//     "name": "Jack Turner",
+//     "specialization": "Optician",
+//     "location": "Cambridge, UK",
+//     "about": "I provide eye care services, including eye exams and prescription glasses.",
+//     "experience": "8+ years",
+//     "qualifications": "Licensed Optometrist (OD)",
+//     "starReviews": 4.7,
+//     "image": "17.jpg",
+//     "id": 17
+//   },
+//   {
+//     "name": "Sophie Green",
+//     "specialization": "Dental Hygiene",
+//     "location": "York, UK",
+//     "about": "I focus on preventive dental care, including cleanings and oral health education.",
+//     "experience": "10+ years",
+//     "qualifications": "Registered Dental Hygienist (RDH)",
+//     "starReviews": 4.8,
+//     "image": "18.jpg",
+//     "id": 18
+//   },
+//   {
+//     "name": "Jacob Roberts",
+//     "specialization": "Psychiatry",
+//     "location": "Norwich, UK",
+//     "about": "I specialize in diagnosing and treating mental health disorders.",
+//     "experience": "11+ years",
+//     "qualifications": "Board Certified Psychiatrist (MD)",
+//     "starReviews": 4.6,
+//     "image": "19.jpg",
+//     "id": 19
+//   },
+//   {
+//     "name": "Amelia Evans",
+//     "specialization": "Occupational Therapy",
+//     "location": "Swansea, UK",
+//     "about": "I help individuals with disabilities achieve independence in daily activities.",
+//     "experience": "9+ years",
+//     "qualifications": "Master's Degree in Occupational Therapy",
+//     "starReviews": 4.9,
+//     "image": "20.jpg",
+//     "id": 20
+//   }
+// ]

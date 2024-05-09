@@ -22,4 +22,4 @@ function getRandom(len = 32) {
   return (uniqueId += Date.now());
 }
 
-module.exports = { getPractitioner, getPractitionerIndexOfById, getRandom };
+module.exports = { getRandom, getPractitioner };

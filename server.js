@@ -2,21 +2,22 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 app.use(cors());
-const practitionerInitialData = require("./localStorage.json");
+// const practitionerInitialData = require("./localStorage.json");
+const asyncMySQL = require("./mysql-patients/driver");
 
 //users state
-const patients = [];
-const practitioners = [...practitionerInitialData]; //starter data
-const messages = [];
-let lastUserId = { value: 1000 };
+// const patients = [];
+// const practitioners = [...practitionerInitialData];
+// const messages = [];
+// let lastUserId = { value: 1000 };
 
 app.use(express.json());
 
 //middleware that adds the users array to the request
 app.use(function (req, res, next) {
-  req.practitioners = practitioners;
-  req.patients = patients;
-  req.lastUserId = lastUserId;
+  // req.practitioners = practitioners;
+  // req.patients = patients;
+  // req.lastUserId = lastUserId;
   next();
 });
 
@@ -36,22 +37,54 @@ app.use("/patient/update", require("./routes/patient/update"));
 app.use("/patient/login", require("./routes/patient/login"));
 app.use("/patient/logout", require("./routes/patient/logout"));
 //message
-// app.use("/message/get", require("./routes/message/get"));
-// app.use("/message/add", require("./routes/message/add"));
-// app.use("/message/delete", require("./routes/message/delete"));
-// app.use("/message/update", require("./routes/message/update"));
+app.use("/message/get", require("./routes/message/get"));
+app.use(
+  "/message/list-practitioners",
+  require("./routes/message/list-practitioners")
+);
+app.use("/message/list-patients", require("./routes/message/list-patients"));
+app.use("/message/history", require("./routes/message/history"));
+app.use("/message/add", require("./routes/message/add"));
+app.use("/message/delete", require("./routes/message/delete"));
 
 // Define route handler for the root path ("/")
 app.get("/", (req, res) => {
   res.send("Hello, this is the backend server for the practitioner app.");
 });
 
-// Route handler to send initial practitioner data
-app.get("/practitioner/get", (req, res) => {
-  res.json(practitionerInitialData);
-});
-
 const PORT = process.env.PORT || 6001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+//add script here to import practitioners into SQL database (run this once only)
+
+// practitioners.forEach((practitioner) => {
+//   console.log(practitioner);
+//   const SQL = `INSERT INTO practitioners
+//   (name,
+//     email,
+//     password,
+//     userType,
+//   specialization,
+//   location,
+//   about,
+//   experience,
+//   qualifications,
+//   star_reviews,
+//   image)
+//   VALUES("${practitioner.name}",
+//   "${Math.random()}",
+//   "${Math.random()}",
+//   "practitioner",
+//     "${practitioner.specialization}",
+//   "${practitioner.location}",
+//   "${practitioner.about.replaceAll("'", "\\'")}",
+//   "${practitioner.experience.replaceAll("'", "\\'")}",
+//   "${practitioner.qualifications.replaceAll("'", "\\'")}",
+//   "${practitioner.starReviews}",
+//   "${practitioner.image}");
+//   `;
+//   console.log(SQL);
+//   asyncMySQL(SQL);
+// });

@@ -3,30 +3,55 @@ const router = express.Router();
 const { salt } = require("../../secrets");
 const sha256 = require("sha256");
 const { getRandom } = require("../practitioner/utils");
+const asyncMySQL = require("../../mysql-patients/driver");
+var cookieParser = require("cookie-parser");
 
-router.post("/", (req, res) => {
-  console.log(req.body);
+router.post("/", async (req, res) => {
+  let { email, password } = req.body;
 
-  const practitioner = req.practitioners.find((practitioner) => {
-    return (
-      practitioner.email === req.body.email &&
-      practitioner.password === sha256(req.body.password + salt)
-    );
-  });
+  //update for practitioners only!
 
-  if (!practitioner) {
+  password = sha256(password + salt);
+
+  const results = await asyncMySQL(`SELECT * FROM practitioners
+                                      WHERE email LIKE "${email}" 
+                                        AND password LIKE "${password}";`);
+  console.log("Results:", results);
+
+  if (results.length > 0) {
+    const token = getRandom();
+    const userType = results[0].userType;
+    const specialization = results[0].specialization;
+    const qualifications = results[0].qualifications;
+    const location = results[0].location;
+    const experience = results[0].experience;
+    const about = results[0].about;
+    const image = results[0].image;
+    console.log(userType);
+
+    await asyncMySQL(`INSERT INTO sessions
+                          (id, token)
+                             VALUES
+                               (${results[0].id}, "${token}");`);
+
     res.send({
-      status: 0,
-      reason: "User/password combination was not found! Please try again",
+      status: 1,
+      token,
+      name: results[0].name,
+      email,
+      userType,
+      location,
+      specialization,
+      qualifications,
+      experience,
+      about,
+      image,
+      // file,
     });
     return;
   }
 
-  const token = getRandom();
-  practitioner.token
-    ? practitioner.token.push({ token, issueDate: Date.now() })
-    : (practitioner.token = [{ token, issueDate: Date.now() }]);
-  res.send({ status: 1, token, user: practitioner });
+  res.send({ status: 0, reason: "Bad creds!" });
 });
 
 module.exports = router;
