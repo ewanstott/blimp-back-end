@@ -30,6 +30,15 @@ function getMessagedPractitioners(userId) {
 }
 ////////////////NEW///////////////
 
+//function will retrieve distinct patients who have messaged the specified practitioner
+function getMessagedPatients(practitionerId) {
+  return `
+    SELECT DISTINCT name, id FROM messages
+    JOIN patients ON messages.sender_id = patients.id
+    WHERE receiver_id = ${practitionerId};
+  `;
+}
+
 ////////////////NEW///////////////
 function getMessageHistory(userId, practitionerId) {
   return `
@@ -47,5 +56,6 @@ module.exports = {
   getReceived,
   getSent,
   getMessagedPractitioners,
+  getMessagedPatients,
   getMessageHistory,
 };

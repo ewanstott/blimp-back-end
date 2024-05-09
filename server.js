@@ -38,15 +38,14 @@ app.use("/patient/login", require("./routes/patient/login"));
 app.use("/patient/logout", require("./routes/patient/logout"));
 //message
 app.use("/message/get", require("./routes/message/get"));
-app.use("/message/list", require("./routes/message/list"));
+app.use(
+  "/message/list-practitioners",
+  require("./routes/message/list-practitioners")
+);
+app.use("/message/list-patients", require("./routes/message/list-patients"));
 app.use("/message/history", require("./routes/message/history"));
 app.use("/message/add", require("./routes/message/add"));
 app.use("/message/delete", require("./routes/message/delete"));
-//practitionerDashboard
-app.use(
-  "/practitionerDashboard/patients",
-  require("./routes/practitionerDashboard/patients")
-);
 
 // Define route handler for the root path ("/")
 app.get("/", (req, res) => {

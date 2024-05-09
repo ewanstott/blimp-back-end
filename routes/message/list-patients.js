@@ -1,12 +1,10 @@
-//Get Patients who Messaged the Practitioner:
+//Get list of Patients who Messaged the Practitioner:
 
 const express = require("express");
 const router = express.Router();
 const asyncMySQL = require("../../mysql-patients/driver");
-const {
-  getMessagedPatients,
-} = require("../../mysql-practitionerDashboard/queries");
-const { checkIsUser } = require("../message/middleware"); //double check this is correct location?
+const { getMessagedPatients } = require("../../mysql-messages/queries");
+const { checkIsUser } = require("./middleware"); //double check this is correct location?
 // const { checkIsUser } = require("../practitioner/middleware");
 
 router.get("/", checkIsUser, async (req, res) => {
