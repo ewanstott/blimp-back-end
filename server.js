@@ -46,7 +46,10 @@ app.use("/message/list-patients", require("./routes/message/list-patients"));
 app.use("/message/history", require("./routes/message/history"));
 app.use("/message/add", require("./routes/message/add"));
 app.use("/message/delete", require("./routes/message/delete"));
-
+//appointment
+// app.use("/appointments/book", require("./routes/appointments(toBeImplemented)/book"));
+// app.use("/appointments/accept", require("./routes/appointments(toBeImplemented)/accept"));
+// app.use("/appointments/reject", require("./routes/appointments(toBeImplemented)/reject"));
 // Define route handler for the root path ("/")
 app.get("/", (req, res) => {
   res.send("Hello, this is the backend server for the practitioner app.");

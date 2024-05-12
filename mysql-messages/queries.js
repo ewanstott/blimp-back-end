@@ -1,8 +1,8 @@
 function addMessage(sender_id, receiver_id, message) {
   return `INSERT INTO messages
-                (sender_id, receiver_id, message)
+                (sender_id, receiver_id, message, sent_at)
                     VALUES
-                      (${sender_id}, ${receiver_id}, "${message}");`;
+                      (${sender_id}, ${receiver_id}, "${message}", NOW());`;
 }
 
 function deleteMessage(id) {
@@ -20,7 +20,6 @@ function getSent(user_id, practitionerId) {
   WHERE messages.sender_id = ${user_id} AND receiver_id = "${practitionerId}";`;
 }
 
-////////////////NEW///////////////
 function getMessagedPractitioners(userId) {
   return `
   SELECT DISTINCT name, id FROM messages
@@ -28,7 +27,6 @@ function getMessagedPractitioners(userId) {
   WHERE sender_id = ${userId};
   `;
 }
-////////////////NEW///////////////
 
 //function will retrieve distinct patients who have messaged the specified practitioner
 function getMessagedPatients(practitionerId) {
@@ -40,14 +38,39 @@ function getMessagedPatients(practitionerId) {
 }
 
 ////////////////NEW///////////////
+// function getMessageHistory(userId, practitionerId) {
+//   return `
+//     SELECT *
+//     FROM messages
+//     WHERE (sender_id = ${userId} AND receiver_id = ${practitionerId})
+//     OR (sender_id = ${practitionerId} AND receiver_id = ${userId})
+//   `;
+// }
+
+// In your MySQL queries file
+
 function getMessageHistory(userId, practitionerId) {
   return `
-    SELECT *
-    FROM messages
-    WHERE (sender_id = ${userId} AND receiver_id = ${practitionerId})
-    OR (sender_id = ${practitionerId} AND receiver_id = ${userId})
+    SELECT 
+      m.*, 
+      p.name AS senderName, 
+      'practitioner' AS senderType
+    FROM messages m
+    JOIN practitioners p ON m.sender_id = p.id
+    WHERE (m.sender_id = ${userId} AND m.receiver_id = ${practitionerId})
+    OR (m.sender_id = ${practitionerId} AND m.receiver_id = ${userId})
+    UNION
+    SELECT 
+      m.*, 
+      pt.name AS senderName, 
+      'patient' AS senderType
+    FROM messages m
+    JOIN patients pt ON m.sender_id = pt.id
+    WHERE (m.sender_id = ${userId} AND m.receiver_id = ${practitionerId})
+    OR (m.sender_id = ${practitionerId} AND m.receiver_id = ${userId})
   `;
 }
+
 ////////////////NEW///////////////
 
 module.exports = {
