@@ -11,7 +11,7 @@ const asyncMySQL = require("./mysql-patients/driver");
 // const messages = [];
 // let lastUserId = { value: 1000 };
 
-app.use(express.json());
+app.use(express.json({limit: "5mb"}));
 
 //middleware that adds the users array to the request
 app.use(function (req, res, next) {
