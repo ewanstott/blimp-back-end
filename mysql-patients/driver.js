@@ -1,10 +1,16 @@
 const mysql = require("mysql");
 
+// const connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "blimp-database",
+// });
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "blimp-database",
+  host: "blimp-health.com",
+  user: "blimphea_blimp-health",
+  password: "+1!1KKmPu#yp",
+  database: "blimphea_blimp-health",
 });
 
 connection.connect();
@@ -23,16 +29,3 @@ function asyncMySQL(query) {
 }
 
 module.exports = asyncMySQL;
-
-// connection.query(`SELECT * FROM simpsons;`, function (error, results, fields) {
-//   console.log(results, error);
-// });
-
-// simpsons.forEach((item) => {
-//   connection.query(
-//     `SELECT * FROM simpsons;`,
-//     function (error, results, fields) {
-//       console.log(results, error);
-//     }
-//   );
-// });
