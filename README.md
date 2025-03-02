@@ -1,6 +1,12 @@
 🧑‍⚕️ Blimp - Backend Architecture 📈
 ------------------------
 
+🚨 Site Currently Not Live
+
+The site is currently not running.
+However, you can view the project files to understand how the site was structured and designed.
+Frontend Repo here: https://github.com/ewanstott/blimp
+
 💻 Tech Stack
 ------------------------
 - Backend Framework: Node.js and Express.js using TypeScript
